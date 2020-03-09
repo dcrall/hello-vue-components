@@ -21,25 +21,25 @@ const vueCliServicePath = getPath('../node_modules/.bin/vue-cli-service')
 fs.emptyDirSync(getPath('../packages'))
 
 // Build the main lib, with all components packaged into a plugin
-console.info('🏗 Building main library')
+console.info('🏗 Building main library ')
 execSync(
-  `${vueCliServicePath} build src/index.js --target lib --name index --dest dist/`
+  `${vueCliServicePath} build ../src/index.js --target lib --name index --dest dist/`
 )
 // Rename the CommonJS build so that it can be imported with
 // ${libConfig}/dist
 renameIndex()
 
 // For each component in the src directory...
-for (const componentName of componentNames) {
+for (const component of componentNames) {
   // Build the component individually
-  console.info(`🏗 Building ${componentName}`)
+  console.info(`🏗 Building ${component.name}`)
   execSync(
-    `${vueCliServicePath} build src/${componentName}.vue --target lib --name index --dest dist/${componentName}/`
+    `${vueCliServicePath} build src/${component.path}.vue --target lib --name index --dest dist/${component.path}/`
   )
 
   // Rename the CommonJS build so that it can be imported with
   // ${libConfig}/dist/ComponentName
-  renameIndex(componentName)
+  renameIndex(component.path)
 }
 
 if (process.env.VUE_APP_E2E) {
@@ -75,6 +75,8 @@ function renameIndex(componentName) {
     __dirname,
     `../packages/${packageName}`
   )
+
+  console.log('Package name: ' + packageName)
 
   for (const build of builds) {
     const oldIndexPath = path.resolve(

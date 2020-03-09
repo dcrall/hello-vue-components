@@ -6,14 +6,18 @@
 
 import HelloA from './HelloA.vue'
 import HelloB from './HelloB.vue'
+import HelloC from './HelloC.vue'
+import HelloD from './sub/HelloD.vue'
 
 // Export components individually
-export { HelloA, HelloB }
+export { HelloA, HelloB, HelloC, HelloD }
 
 // What should happen if the user installs the library as a plugin
 function install(Vue) {
   Vue.component('HelloA', HelloA)
   Vue.component('HelloB', HelloB)
+  Vue.component('HelloC', HelloC)
+  Vue.component('HelloD', HelloD)
 }
 
 // Export the library as a plugin

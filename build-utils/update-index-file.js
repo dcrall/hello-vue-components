@@ -10,16 +10,16 @@ const indexFileContent = `\
 // YOU SHOULD NEVER UPDATE THIS FILE DIRECTLY
 
 ${componentNames
-  .map(componentName => `import ${componentName} from './${componentName}.vue'`)
+  .map(component => `import ${component.name} from './${component.path}.vue'`)
   .join('\n')}
 
 // Export components individually
-export { ${componentNames.map(componentName => componentName).join(', ')} }
+export { ${componentNames.map(component => component.name).join(', ')} }
 
 // What should happen if the user installs the library as a plugin
 function install(Vue) {
 ${componentNames
-  .map(componentName => `  Vue.component('${componentName}', ${componentName})`)
+  .map(component => `  Vue.component('${component.name}', ${component.name})`)
   .join('\n')}
 }
 

@@ -10,9 +10,6 @@
     "test": "npm run unit && npm run e2e",
     "prepublishOnly": "npm run lint && npm run test && node build-utils/build-lib.js"
   },
-  "gitHooks": {
-    "pre-commit": "cross-env PRE_COMMIT=true lint-staged"
-  },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.2",
