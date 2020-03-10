@@ -79,10 +79,16 @@ function renameIndex(componentName) {
   console.log('Package name: ' + packageName)
 
   for (const build of builds) {
+    console.log('Build: ' + build.type)
+
+
     const oldIndexPath = path.resolve(
       __dirname,
       `../dist/${componentName || ''}/index.${build.type}.js`
     )
+
+    console.log('Old index path: ' + oldIndexPath);
+
     const [buildTypeBase, buildModifier] = build.type.split('.')
     const destFolder = path.resolve(
       destPackageFolder,
@@ -92,6 +98,9 @@ function renameIndex(componentName) {
       destFolder,
       `index${buildModifier ? '.' + buildModifier : ''}.js`
     )
+
+    console.log('New index path: ' + newIndexPath)
+
     if (!fs.existsSync(destPackageFolder)) {
       fs.mkdirSync(destPackageFolder)
     }
