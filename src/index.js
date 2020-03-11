@@ -4,10 +4,10 @@
 //
 // YOU SHOULD NEVER UPDATE THIS FILE DIRECTLY
 
-import HelloA from './HelloA.vue'
-import HelloB from './HelloB.vue'
-import HelloC from './HelloC.vue'
-import HelloD from './sub/HelloD.vue'
+import HelloA from './src/HelloA.vue'
+import HelloB from './src/HelloB.vue'
+import HelloC from './src/HelloC.vue'
+import HelloD from './src/sub/HelloD.vue'
 
 // Export components individually
 export { HelloA, HelloB, HelloC, HelloD }
